@@ -1,3 +1,4 @@
+const chunk = require('lodash.chunk');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,21 +20,30 @@ const translateMarkdown = (filepath) => {
 
   const writeStream = fs.createWriteStream(
     path.resolve(__dirname, './README.zh.md'),
-    {flags: 'a'}
   )
-  translate(textArr).then(data => {
-    for (let node of nodeArr) {
-      if(node && node.value) {
-        node.value = data.shift().translations[0].text
+
+  const chunkTextArr = chunk(textArr, 100);
+
+  for (let eachTextArr of chunkTextArr) {
+    translate(eachTextArr).then(data => {
+      for (let node of nodeArr) {
+        if(node && node.value) {
+          const result = data.shift();
+          if (result) {
+            node.value = result.translations[0].text
+          }
+        }
       }
-    }
-    writeStream.write(stringifyToDoc(tree), (err => {
-      if(err) {
-        throw err
-      }
-      process.exit(0)
-    }))
-  }).catch(err => {throw err})
+      writeStream.write(stringifyToDoc(tree), (err => {
+        if(err) {
+          throw err
+        }
+        process.exit(0)
+      }))
+    }).catch(err => {throw err})
+  }
+  
+
 }
 
 translateMarkdown(path.resolve(__dirname, './README.md'))
