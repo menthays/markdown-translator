@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash.chunk": "^4.2.0",
+    "lodash.flatten": "^4.4.0",
     "remark": "^10.0.1",
     "request": "^2.88.0",
     "unified-stream": "^1.0.4"
