@@ -1,13 +1,14 @@
 const chunk = require('lodash.chunk');
 const flatten = require('lodash.flatten');
 const fs = require('fs');
-const path = require('path');
 
 const {parseToTree, getTextTobeTranslated, stringifyToDoc} = require('./lib/parseMarkdown');
 const {translate} = require('./lib/translateByMicrosoft');
 
-const translateMarkdown = (filepath) => {
-  const tree = parseToTree(filepath);
+module.exports = ({
+  src, dest, from, to, subscriptionKey
+}) => {
+  const tree = parseToTree(src);
   const nodeArr = getTextTobeTranslated(tree);
   const textArr = nodeArr.reduce((prev = [], cur) => {
     if(cur && cur.value) {
@@ -19,16 +20,16 @@ const translateMarkdown = (filepath) => {
   }, []);
 
 
-  const writeStream = fs.createWriteStream(
-    path.resolve(__dirname, './README.zh.md'),
-  )
+  const writeStream = fs.createWriteStream(dest)
 
   const chunkTextArr = chunk(textArr, 100);
 
   const translatePromises = []
 
   for (let eachTextArr of chunkTextArr) {
-    translatePromises.push(translate(eachTextArr));
+    translatePromises.push(translate(eachTextArr, {
+      from, to, subscriptionKey
+    }));
   }
 
   Promise.all(translatePromises).then(dataArr => {
@@ -48,8 +49,4 @@ const translateMarkdown = (filepath) => {
       process.exit(0)
     }))
   })
-  
-
 }
-
-translateMarkdown(path.resolve(__dirname, './README.md'))
