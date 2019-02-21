@@ -1,14 +1,17 @@
-# Markdown Translator
+# Markdown 翻译器
 
-其他语言：[中文](./README.zh.md)
+Other Language: [English](./README.md)
 
-> Directly translate markdown file using Azure Text Translate API
+> 使用 Azure 文本翻译 API 直接翻译 Markdown 文件
 
-## Prerequisites
-Get Text Translate API Key from [Azure Cognitive Services](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup)
+## 先决条件
 
-## Quick Start
-### Use as cli
+从[Azure 服务](https://docs.microsoft.com/zh-cn/azure/cognitive-services/translator/translator-text-how-to-signup)获取文本翻译 API 密钥
+
+## 快速入门
+
+### 以命令行的方式使用
+
 ```bash
 # install cli
 npm install markdown-translator -g
@@ -21,10 +24,10 @@ md-translator translate --src README.md --dest README.zh.md --to zh
 
 # get more infomation
 md-translator --help
-
 ```
 
-### Use as a module
+### 以模块的方式使用
+
 ```bash
 # install module
 npm install markdown-translator
@@ -41,6 +44,3 @@ markdownTranslate({
   // deal with result
 })
 ```
-
-
-

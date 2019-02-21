@@ -16,8 +16,8 @@ program
       key
     });
     fs.writeFileSync(
-      path.resolve(__dirname, './config.js'),
-      `module.exports = ${JSON.stringify(newConfig)}`
+      path.resolve(__dirname, './config.json'),
+      JSON.stringify(newConfig)
     );
   })
 
@@ -49,11 +49,13 @@ program
       const writeStream = fs.createWriteStream(destPath);
       writeStream.write(data, err => {
         if(err) {
-          console.error(err)
+          throw err
         }
         process.exit(0)
       });
-    }).catch(console.error)
+    }).catch(err => {
+      throw err
+    })
   })
 
 program
