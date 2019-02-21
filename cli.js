@@ -42,11 +42,24 @@ program
     const subscriptionKey = key || config.key;
     translateMarkdown({
       src: srcPath,
-      dest: destPath,
       from,
       to,
       subscriptionKey
-    })
+    }).then(data => {
+      const writeStream = fs.createWriteStream(destPath);
+      writeStream.write(data, err => {
+        if(err) {
+          console.error(err)
+        }
+        process.exit(0)
+      });
+    }).catch(console.error)
   })
+
+program
+  .command('*')
+  .action(() => {
+    program.help();
+  });
 
 program.parse(process.argv);

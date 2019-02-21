@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "bin": {
-    "md-translate": "./cli.js"
+    "md-translator": "./cli.js"
   },
   "license": "ISC",
   "dependencies": {
