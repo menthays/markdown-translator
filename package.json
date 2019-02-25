@@ -1,13 +1,18 @@
 {
   "name": "markdown-translator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Directly translate markdown file using Azure Text Translate API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist:mac": "pkg package.json --targets node8-macos-x64",
+    "dist:win": "pkg package.json --targets node8-win-x64"
   },
   "bin": {
     "md-translator": "./cli.js"
+  },
+  "pkg": {
+    "assets": "config.json"
   },
   "dependencies": {
     "commander": "^2.19.0",
@@ -33,5 +38,8 @@
   "bugs": {
     "url": "https://github.com/menthays/markdown-translator/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pkg": "^4.3.7"
+  }
 }

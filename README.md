@@ -24,6 +24,15 @@ md-translator --help
 
 ```
 
+### Use as binaries
+> Run markdown-translator without Node environment
+
+- Update config.json with your Azure Text Translate API.
+- Run `npm run dist:mac` to build for macos and `npm run dist:win` for windows.
+- Run the dist binary files like cli, e.g, `./markdown-translator translate --src README.md --dest README.zh.md --to zh`
+
+> Modify dist scripts according to your platform. Find more at [here](https://github.com/zeit/pkg)
+
 ### Use as a module
 ```bash
 # install module
