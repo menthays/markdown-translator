@@ -40,6 +40,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "pkg": "^4.3.7"
+    "pkg": "4.3.7"
   }
 }
