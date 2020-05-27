@@ -45,11 +45,14 @@ markdownTranslate({
   src: pathToSrcFile,
   from: languageToTranslateFrom,
   to: languageToTranslateTo,
-  subscriptionKey: yourSubscriptionKey
+  subscriptionKey: yourSubscriptionKey,
+  region: theRegionOfYourAzureInstance
 }).then(res => {
   // deal with result
 })
 ```
 
+Note that there are some opinionated defaults: from is by default 'en', to 'zh'.
+The region argument is optional.
 
 
