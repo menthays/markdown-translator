@@ -42,10 +42,10 @@ npm install markdown-translator
 ```javascript
 const markdownTranslate = require('markdown-translator')
 markdownTranslate({
-  src,
-  from,
-  to,
-  subscriptionKey
+  src: pathToSrcFile,
+  from: languageToTranslateFrom,
+  to: languageToTranslateTo,
+  subscriptionKey: yourSubscriptionKey
 }).then(res => {
   // deal with result
 })
