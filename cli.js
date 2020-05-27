@@ -34,9 +34,10 @@ program
   .option('-S, --src [src]', 'src file')
   .option('-D, --dest [dest]', 'dest file')
   .option('-F, --from [from]', 'src lang')
+  .option('-R, --region [region]', 'Azure region')
   .option('-T, --to [to]', 'dest lang')
   .option('-K, --key [key]', 'TRANSLATOR_TEXT_KEY')
-  .action(function({ src, dest, from, to, key }) {
+  .action(function({ src, dest, from, region, to, key }) {
     const srcPath = path.resolve(process.cwd(), src);
     const destPath = path.resolve(process.cwd(), dest);
     const subscriptionKey = key || config.key;
@@ -44,7 +45,8 @@ program
       src: srcPath,
       from,
       to,
-      subscriptionKey
+      subscriptionKey,
+      region
     }).then(data => {
       const writeStream = fs.createWriteStream(destPath);
       writeStream.write(data, err => {
