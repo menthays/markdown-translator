@@ -3,7 +3,7 @@
     "config:base"
   ],
   "automerge": true,
-  "baseBranches": "dev",
+  "baseBranches": ["dev"],
   "major": {
     "automerge": false
   },
