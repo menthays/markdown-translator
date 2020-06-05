@@ -18,6 +18,7 @@ npm install markdown-translator -g
 
 # set key from Azure Text Translate API
 md-translator set --key <your key>
+md-translator set --region <your region>
 
 # do translate
 md-translator translate --src README.md --dest README.zh.md --to zh
