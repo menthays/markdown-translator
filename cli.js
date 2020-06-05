@@ -11,9 +11,10 @@ program
   .command('set')
   .description('set config for cli')
   .option('-K --key [key]', 'TRANSLATOR_TEXT_KEY')
-  .action(function ({key}) {
+  .option('-R --region [region]', 'TRANSLATOR_REGION')
+  .action(function ({key, region}) {
     let newConfig = merge(config, {
-      key
+      key, region
     });
     fs.writeFileSync(
       path.resolve(__dirname, './config.json'),
@@ -41,12 +42,13 @@ program
     const srcPath = path.resolve(process.cwd(), src);
     const destPath = path.resolve(process.cwd(), dest);
     const subscriptionKey = key || config.key;
+    const serviceRegion = region || config.region;
     translateMarkdown({
       src: srcPath,
       from,
       to,
       subscriptionKey,
-      region
+      region: serviceRegion,
     }).then(data => {
       const writeStream = fs.createWriteStream(destPath);
       writeStream.write(data, err => {
