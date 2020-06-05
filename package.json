@@ -15,11 +15,11 @@
     "assets": "config.json"
   },
   "dependencies": {
-    "commander": "^2.19.0",
+    "commander": "^5.0.0",
     "lodash.chunk": "^4.2.0",
     "lodash.flatten": "^4.4.0",
     "lodash.merge": "^4.6.1",
-    "remark": "^10.0.1",
+    "remark": "^12.0.0",
     "request": "^2.88.0",
     "unified-stream": "^1.0.4"
   },
@@ -40,6 +40,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "pkg": "4.3.7"
+    "pkg": "^4.4.5"
   }
 }

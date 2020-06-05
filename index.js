@@ -35,7 +35,7 @@ module.exports = ({
       for (let node of nodeArr) {
         if(node && node.value) {
           const result = data.shift();
-          if (result) {
+          if (result && result.translations) {
             node.value = result.translations[0].text
           }
         }
