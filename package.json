@@ -1,10 +1,10 @@
 {
   "name": "markdown-translator",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Directly translate markdown file using Azure Text Translate API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test in temp\"",
     "dist:mac": "pkg package.json --targets node8-macos-x64",
     "dist:win": "pkg package.json --targets node8-win-x64"
   },
