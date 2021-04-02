@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm test
+      - run: AZURE_TOKEN=${{secrets.azure_token}} AZURE_REGION=${{secrets.azure_region}} npm run test
 
   publish-npm:
     needs: build
