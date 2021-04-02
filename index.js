@@ -6,10 +6,10 @@ const {parseToTree, getTextTobeTranslated, stringifyToDoc} = require('./lib/pars
 const {translate} = require('./lib/translateByMicrosoft');
 
 module.exports = ({
-  src, from, to, subscriptionKey, region
+  src, text, from, to, subscriptionKey, region
 }) => {
   return new Promise((resolve, reject) => {
-    const tree = parseToTree(src);
+    const tree = parseToTree({ src, text });
     const nodeArr = getTextTobeTranslated(tree);
     const textArr = nodeArr.reduce((prev = [], cur) => {
       if(cur && cur.value) {

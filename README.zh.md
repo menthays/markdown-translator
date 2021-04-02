@@ -23,7 +23,7 @@ md-translator set --region <your region>
 # do translate
 md-translator translate --src README.md --dest README.zh.md --to zh
 
-# get more infomation
+# get more information
 md-translator --help
 ```
 
@@ -47,7 +47,10 @@ npm install markdown-translator
 ```javascript
 const markdownTranslate = require('markdown-translator')
 markdownTranslate({
-  src,
+  src, 
+  // 要么
+  text,
+
   from,
   to,
   subscriptionKey
