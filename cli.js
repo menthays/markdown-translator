@@ -1,31 +1,33 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const merge = require('lodash.merge');
-const path = require('path');
-const program = require('commander');
+const fs = require('fs')
+const merge = require('lodash.merge')
+const path = require('path')
+const program = require('commander')
 
-const config = require('./config');
+const config = require('./config')
 const translateMarkdown = require('./index')
 
 program
   .command('set')
   .description('set config for cli')
   .option('-K --key [key]', 'TRANSLATOR_TEXT_KEY')
-  .action(function ({key}) {
+  .option('-R --region [region]', 'TRANSLATOR_REGION')
+  .action(function ({ key, region }) {
     let newConfig = merge(config, {
-      key
-    });
+      key,
+      region,
+    })
     fs.writeFileSync(
       path.resolve(__dirname, './config.json'),
       JSON.stringify(newConfig)
-    );
+    )
   })
 
 program
   .command('get <key>')
   .description('get value of typical key from config')
   .action(function (key) {
-    console.log(config[key] || '');
+    console.log(config[key] || '')
   })
 
 program
@@ -37,33 +39,34 @@ program
   .option('-R, --region [region]', 'Azure region')
   .option('-T, --to [to]', 'dest lang')
   .option('-K, --key [key]', 'TRANSLATOR_TEXT_KEY')
-  .action(function({ src, dest, from, region, to, key }) {
-    const srcPath = path.resolve(process.cwd(), src);
-    const destPath = path.resolve(process.cwd(), dest);
-    const subscriptionKey = key || config.key;
+  .action(function ({ src, dest, from, region, to, key }) {
+    const srcPath = path.resolve(process.cwd(), src)
+    const destPath = path.resolve(process.cwd(), dest)
+    const subscriptionKey = key || config.key
+    const serviceRegion = region || config.region
     translateMarkdown({
       src: srcPath,
       from,
       to,
       subscriptionKey,
-      region
-    }).then(data => {
-      const writeStream = fs.createWriteStream(destPath);
-      writeStream.write(data, err => {
-        if(err) {
-          throw err
-        }
-        process.exit(0)
-      });
-    }).catch(err => {
-      throw err
+      region: serviceRegion,
     })
+      .then((data) => {
+        const writeStream = fs.createWriteStream(destPath)
+        writeStream.write(data, (err) => {
+          if (err) {
+            throw err
+          }
+          process.exit(0)
+        })
+      })
+      .catch((err) => {
+        throw err
+      })
   })
 
-program
-  .command('*')
-  .action(() => {
-    program.help();
-  });
+program.command('*').action(() => {
+  program.help()
+})
 
-program.parse(process.argv);
+program.parse(process.argv)

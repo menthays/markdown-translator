@@ -1,46 +1,55 @@
-const chunk = require('lodash.chunk');
-const flatten = require('lodash.flatten');
-const fs = require('fs');
+const chunk = require('lodash.chunk')
+const flatten = require('lodash.flatten')
+const fs = require('fs')
 
-const {parseToTree, getTextTobeTranslated, stringifyToDoc} = require('./lib/parseMarkdown');
-const {translate} = require('./lib/translateByMicrosoft');
+const {
+  parseToTree,
+  getTextTobeTranslated,
+  stringifyToDoc,
+} = require('./lib/parseMarkdown')
+const { translate } = require('./lib/translateByMicrosoft')
 
-module.exports = ({
-  src, from, to, subscriptionKey, region
-}) => {
+module.exports = ({ src, text, from, to, subscriptionKey, region }) => {
   return new Promise((resolve, reject) => {
-    const tree = parseToTree(src);
-    const nodeArr = getTextTobeTranslated(tree);
+    const tree = parseToTree({ src, text })
+    const nodeArr = getTextTobeTranslated(tree)
     const textArr = nodeArr.reduce((prev = [], cur) => {
-      if(cur && cur.value) {
+      if (cur && cur.value) {
         prev.push({
-          text: cur.value
-        });
+          text: cur.value,
+        })
       }
-      return prev;
-    }, []);
-  
-    const chunkTextArr = chunk(textArr, 100);
-  
+      return prev
+    }, [])
+
+    const chunkTextArr = chunk(textArr, 100)
+
     const translatePromises = []
-  
+
     for (let eachTextArr of chunkTextArr) {
-      translatePromises.push(translate(eachTextArr, {
-        from, to, subscriptionKey, region
-      }));
+      translatePromises.push(
+        translate(eachTextArr, {
+          from,
+          to,
+          subscriptionKey,
+          region,
+        })
+      )
     }
-  
-    Promise.all(translatePromises).then(dataArr => {
-      let data = flatten(dataArr);
-      for (let node of nodeArr) {
-        if(node && node.value) {
-          const result = data.shift();
-          if (result) {
-            node.value = result.translations[0].text
+
+    Promise.all(translatePromises)
+      .then((dataArr) => {
+        let data = flatten(dataArr)
+        for (let node of nodeArr) {
+          if (node && node.value) {
+            const result = data.shift()
+            if (result && result.translations) {
+              node.value = result.translations[0].text
+            }
           }
         }
-      }
-      resolve(stringifyToDoc(tree));
-    }).catch(reject);
+        resolve(stringifyToDoc(tree))
+      })
+      .catch(reject)
   })
 }
