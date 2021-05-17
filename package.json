@@ -15,13 +15,13 @@
     "assets": "config.json"
   },
   "dependencies": {
-    "commander": "^2.19.0",
+    "commander": "^7.2.0",
     "lodash.chunk": "^4.2.0",
     "lodash.flatten": "^4.4.0",
-    "lodash.merge": "^4.6.1",
-    "remark": "^10.0.1",
+    "lodash.merge": "^4.6.2",
+    "remark": "^13.0.0",
     "request": "^2.88.0",
-    "unified-stream": "^1.0.4"
+    "unified-stream": "^1.0.6"
   },
   "keywords": [
     "Azure",
@@ -40,6 +40,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "pkg": "4.3.7"
+    "pkg": "5.1.0"
   }
 }
