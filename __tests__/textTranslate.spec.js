@@ -5,8 +5,7 @@ const mockContent = '# Hello World'
 describe('Text translate', () => {
   it('translate simple text', (done) => {
     const subscriptionKey = config.key || process.env.AZURE_TOKEN
-    const region = config.key || process.env.AZURE_REGION
-
+    const region = config.region || process.env.AZURE_REGION
     translate({
       text: mockContent,
       from: 'en',
