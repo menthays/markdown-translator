@@ -1,7 +1,7 @@
 {
   "extends": ["config:base"],
   "automerge": true,
-  "baseBranches": ["dev"],
+  "baseBranches": ["master"],
   "major": {
     "automerge": false
   },
