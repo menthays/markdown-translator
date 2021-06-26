@@ -42,7 +42,7 @@
   "license": "MIT",
   "devDependencies": {
     "husky": "6.0.0",
-    "jest": "27.0.4",
+    "jest": "27.0.5",
     "lint-staged": "11.0.0",
     "pkg": "5.2.1",
     "prettier": "2.3.1"
