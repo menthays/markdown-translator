@@ -21,7 +21,7 @@
     "lodash.merge": "^4.6.1",
     "remark": "^13.0.0",
     "request": "^2.88.0",
-    "unified-stream": "^1.0.6",
+    "unified-stream": "^2.0.0",
     "uuid": "^8.3.2"
   },
   "keywords": [
