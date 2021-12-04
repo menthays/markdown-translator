@@ -45,7 +45,7 @@
     "jest": "27.4.3",
     "lint-staged": "11.2.6",
     "pkg": "5.5.1",
-    "prettier": "2.5.0"
+    "prettier": "2.5.1"
   },
   "husky": {
     "hooks": {
