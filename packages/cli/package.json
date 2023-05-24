@@ -17,5 +17,8 @@
     "@markdown-translator/core": "workspace:@markdown-translator/core@*",
     "commander": "^10.0.1",
     "js-yaml": "^4.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
