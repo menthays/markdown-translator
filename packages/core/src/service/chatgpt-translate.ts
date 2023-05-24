@@ -13,7 +13,7 @@ export const createChatgptTranslateService = (options: ChatgptTranslateOptions) 
 
     return async (content: string) => {
         const prompt = `
-            Translate the following markdown content to language "${options.to}" preserving the markdown format and output the result directly:
+            Translate the following markdown content to language "${options.to}" and output the result without any other words while preserving the markdown format:
             ${content}
         `
         const res = await api.sendMessage(prompt)
