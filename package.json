@@ -1,7 +1,7 @@
 {
   "name": "@markdown-translator/root",
   "private": "true",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "Translate Markdown content while preserving the format",
   "keywords": [
     "Azure",
