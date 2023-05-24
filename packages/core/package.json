@@ -1,0 +1,36 @@
+{
+  "name": "@markdown-translator/core",
+  "version": "1.0.0-alpha.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash-es": "^4.17.7",
+    "chatgpt": "^5.2.4",
+    "isomorphic-fetch": "^3.0.0",
+    "lodash-es": "^4.17.21",
+    "remark-parse": "^10.0.2",
+    "remark-stringify": "^10.0.3",
+    "request": "^2.88.2",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^3.0.11",
+    "@types/node": "^18.16.14",
+    "@types/request": "^2.48.8",
+    "@types/uuid": "^9.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^5.0.4"
+  }
+}
