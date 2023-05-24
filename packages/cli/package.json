@@ -1,7 +1,7 @@
 {
   "name": "@markdown-translator/cli",
   "version": "1.0.0-alpha.0",
-  "description": "",
+  "description": "CLI for markdown-translator",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,9 +10,9 @@
   "bin": {
     "mdtranslate": "./index.js"
   },
-  "keywords": [],
+  "keywords": ["Translate", "CLI", "ChatGPT", "Azure"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@markdown-translator/core": "workspace:@markdown-translator/core@*",
     "commander": "^10.0.1",
