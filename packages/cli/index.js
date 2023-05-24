@@ -25,13 +25,13 @@ const destPath = path.resolve(process.cwd(), opts.output)
 const writeStream = fs.createWriteStream(destPath)
 
 if (opts.azure) {
-  const result = azureTranslate(fs.readFileSync(srcPath), {
+  azureTranslate(fs.readFileSync(srcPath), {
     from: opts.from,
     to: opts.to,
     subscriptionKey: opts.key,
     subscriptionRegion: opts.region,
   }).then(res => {
-    writeStream.write(res)
+    writeStream.write(res.value)
   })
 } else if (opts.chatgpt) {
   chatgptTranslate(fs.readFileSync(srcPath), {

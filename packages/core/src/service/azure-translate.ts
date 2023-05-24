@@ -45,9 +45,6 @@ const translate = (
     if (subscriptionRegion) {
       (options.headers as Record<string, string>)['Ocp-Apim-Subscription-Region'] = subscriptionRegion;
     }
-
-    console.log(options)
-
     request(options, function (err, res, body) {
       if (err) {
         reject(err);
@@ -71,7 +68,7 @@ export const createAzureTranslateService = (options: AzureTranslateOptions): Plu
   }
   // return unified.js plugin
   return () => {
-    return (tree: MdastRoot) => {
+    return async (tree: MdastRoot) => {
         const transform = async (ast: MdastRoot) => {
           let contents: Text[] = []
           visit(ast, 'text', (node) => {
@@ -79,7 +76,7 @@ export const createAzureTranslateService = (options: AzureTranslateOptions): Plu
           })
           await handleContents(contents)
         }
-        return transform(tree)
+        await transform(tree)
       }
   }
 }
