@@ -9,9 +9,13 @@
     "build": "tsc",
     "prebuild": "rimraf dist",
     "prepublishOnly": "pnpm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js"
   },
-  "keywords": ["Translate", "ChatGPT", "Azure"],
+  "keywords": [
+    "Translate",
+    "ChatGPT",
+    "Azure"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -27,11 +31,14 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@jest/globals": "^29.5.0",
     "@types/mdast": "^3.0.11",
     "@types/node": "^18.16.14",
     "@types/request": "^2.48.8",
     "@types/uuid": "^9.0.1",
+    "jest": "29.0.3",
     "rimraf": "^3.0.2",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   },
   "publishConfig": {
