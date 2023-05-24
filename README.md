@@ -4,6 +4,8 @@
 
 > Translate markdown file while preserving the format using Azure Cognitive Services or Chatgpt
 
+[Migration from 0.4.5](./MIGRATION.md)
+
 ## Prerequisites
 ### Register Service
 You need to register and create authentication infos according to the service you use before using the translator:
