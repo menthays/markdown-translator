@@ -22,7 +22,7 @@
     "remark": "^13.0.0",
     "request": "^2.88.0",
     "unified-stream": "^2.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "keywords": [
     "Azure",
