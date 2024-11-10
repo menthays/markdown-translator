@@ -1,0 +1,66 @@
+import requests
+from bs4 import BeautifulSoup
+
+def extract_text_from_url(url):
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Remover scripts e estilos
+        for script in soup(["script", "style"]):
+            script.extract()
+
+        # Extrair texto
+        text = soup.get_text(separator=' ')
+
+        # Limpar texto
+        linhas = (line.strip() for line in text.splitlines())
+        text = '\n'.join(line for line in linhas if line)
+        texto_limpo = text.replace('\n', ' ')
+
+        return texto_limpo  # Retornar texto limpo
+
+    print(f'Failed to fetch URL, Status code: {response.status_code}')
+    raise Exception(f'Failed to fetch URL {url}')
+
+# Exemplo de uso
+url = 'https://dev.to/kenakamu/azure-open-ai-in-vnet-3alo'
+try:
+    extracted_text = extract_text_from_url(url)
+    print(extracted_text)  # Imprime o texto extraído
+except Exception as e:
+    print(e)
+
+
+from langchain_openai.chat_models.azure import AzureChatOpenAI
+
+client = AzureChatOpenAI(
+    azure_endpoint = "https://oia-dio-bootcamp-dev-eastus-1506.openai.azure.com/",
+    api_key="your_apikey",
+    api_version = "2024-02-15-preview",
+    deployment_name ="gpt-4o-mini",  #Change to the correct deployment name
+    max_retries=0
+)
+
+def translate_article(text, lang):
+    messages = [
+        ("system", "Você atua como tradutor de textos"),
+        ("user", f"traduza o {text} para o idioma {lang} e responda em markdown")
+    ]
+
+    response = client.invoke(messages)
+    print(response.content)  #Imprime o conteúdo da resposta
+    return response.content  #Retorna o conteúdo da resposta
+
+#Chamada da função
+translated_text = translate_article("Azure Sample repo provides a sample bicep files to deploy Azure Open AI into VNet environment", 'português')
+print(translated_text)  #Imprime o texto traduzido
+
+
+
+url = 'https://dev.to/kenakamu/azure-open-ai-in-vnet-3alo'
+text = extract_text_from_url(url)
+article = translate_article(text,"pt-br")
+
+print(article)
